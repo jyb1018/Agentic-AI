@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>OSI 7계층 — 그림으로 이해하기</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f5f7fb;color:#192b42;font-family:system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.65}main{max-width:850px;margin:auto;padding:44px 22px 64px}header{margin-bottom:32px}h1{font-size:34px;line-height:1.25;margin:8px 0 16px}.eyebrow{font-size:13px;letter-spacing:2px;color:#38619a}h2{font-size:21px;margin:0 0 22px}figure{margin:0 0 28px;padding:26px;background:white;border:1px solid #dde5ee;border-radius:18px;overflow-x:auto}svg{display:block;width:100%;min-width:650px;height:auto}svg rect{fill:#edf3fb;stroke:#cedcec}svg text{font-size:17px;fill:#192b42}.label{font-weight:700;font-size:20px}.arrow{color:#426c99}.arrow>path{fill:none;stroke:currentColor;stroke-width:1.5}.arrow text{font-size:15px;fill:#365678}figcaption{margin-top:14px;font-size:15px;color:#46576b;max-width:70ch}section{padding:20px 8px}li{margin:12px 0}@media(max-width:600px){main{padding:26px 12px}h1{font-size:28px}figure{padding:18px 12px}h2{font-size:19px}}@media print{body{background:white}main{padding:0}figure{break-inside:avoid}svg{min-width:0}}
+</style></head><body><main><header><div class="eyebrow">NETWORK · OSI REFERENCE MODEL</div><h1>OSI 7계층은 어떻게 작동할까요?</h1><p>송신 장치는 계층 정보를 붙이고, 수신 장치는 계층 정보를 처리해 응용 데이터를 복원합니다.</p></header>
+<figure><h2>1. 송신: 데이터는 7계층에서 1계층으로 내려갑니다</h2><svg viewBox="0 0 740 756" role="img" aria-labelledby="title1 desc1"><title id="title1">송신: 데이터는 7계층에서 1계층으로 내려갑니다</title><desc id="desc1">OSI는 통신 기능을 일곱 계층으로 나누는 참조 모델입니다. 실제 인터넷 구현은 5~7계층의 기능을 함께 처리하기도 합니다.</desc><defs><marker id="arrow1" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="none" stroke="currentColor"/></marker></defs>
+<rect x="14" y="4" width="712" height="72" rx="12"/><text class="label" x="34" y="32">7 · 응용 계층 | Application</text><text x="34" y="58">응용 계층은 프로그램에 네트워크 서비스를 제공합니다.</text>
+<g class="arrow"><path d="M50 78 V110" marker-end="url(#arrow1)"/><text x="72" y="101">응용 데이터를 전달합니다</text></g>
+<rect x="14" y="116" width="712" height="72" rx="12"/><text class="label" x="34" y="144">6 · 표현 계층 | Presentation</text><text x="34" y="170">표현 계층은 데이터 형식을 변환하고 암호화·압축을 처리합니다.</text>
+<g class="arrow"><path d="M50 190 V222" marker-end="url(#arrow1)"/><text x="72" y="213">표현 처리를 거친 데이터를 전달합니다</text></g>
+<rect x="14" y="228" width="712" height="72" rx="12"/><text class="label" x="34" y="256">5 · 세션 계층 | Session</text><text x="34" y="282">세션 계층은 대화의 시작·유지·종료와 동기화를 관리합니다.</text>
+<g class="arrow"><path d="M50 302 V334" marker-end="url(#arrow1)"/><text x="72" y="325">전송할 데이터를 전달합니다</text></g>
+<rect x="14" y="340" width="712" height="72" rx="12"/><text class="label" x="34" y="368">4 · 전송 계층 | Transport</text><text x="34" y="394">전송 계층은 프로세스 간 전달을 담당합니다.</text>
+<g class="arrow"><path d="M50 414 V446" marker-end="url(#arrow1)"/><text x="72" y="437">전송 계층 데이터를 전달합니다</text></g>
+<rect x="14" y="452" width="712" height="72" rx="12"/><text class="label" x="34" y="480">3 · 네트워크 계층 | Network</text><text x="34" y="506">네트워크 계층은 주소와 경로를 사용해 패킷을 전달합니다.</text>
+<g class="arrow"><path d="M50 526 V558" marker-end="url(#arrow1)"/><text x="72" y="549">패킷을 전달합니다</text></g>
+<rect x="14" y="564" width="712" height="72" rx="12"/><text class="label" x="34" y="592">2 · 데이터 링크 계층 | Data link</text><text x="34" y="618">데이터 링크 계층은 같은 링크의 장치 사이에 프레임을 전달합니다.</text>
+<g class="arrow"><path d="M50 638 V670" marker-end="url(#arrow1)"/><text x="72" y="661">프레임을 비트로 전달합니다</text></g>
+<rect x="14" y="676" width="712" height="72" rx="12"/><text class="label" x="34" y="704">1 · 물리 계층 | Physical</text><text x="34" y="730">물리 계층은 비트를 전기·빛·무선 신호로 전송합니다.</text>
+</svg><figcaption>OSI는 통신 기능을 일곱 계층으로 나누는 참조 모델입니다. 실제 인터넷 구현은 5~7계층의 기능을 함께 처리하기도 합니다.</figcaption></figure>
+<figure><h2>2. 캡슐화: 각 계층은 전달에 필요한 정보를 붙입니다</h2><svg viewBox="0 0 740 420" role="img" aria-labelledby="title2 desc2"><title id="title2">캡슐화: 각 계층은 전달에 필요한 정보를 붙입니다</title><desc id="desc2">이 그림은 TCP·IP·Ethernet을 사용하는 예시이며, 실제 데이터는 여러 세그먼트로 나뉠 수 있습니다. TCP는 재전송과 순서 복원을 제공하지만, UDP는 같은 보장을 제공하지 않습니다.</desc><defs><marker id="arrow2" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="none" stroke="currentColor"/></marker></defs>
+<rect x="14" y="4" width="712" height="72" rx="12"/><text class="label" x="34" y="32">응용 데이터</text><text x="34" y="58">HTTP 요청 등의 데이터</text>
+<g class="arrow"><path d="M50 78 V110" marker-end="url(#arrow2)"/><text x="72" y="101">TCP가 포트·순서 번호 등의 헤더를 붙입니다</text></g>
+<rect x="14" y="116" width="712" height="72" rx="12"/><text class="label" x="34" y="144">4계층 · TCP 세그먼트</text><text x="34" y="170">[ TCP 헤더 | 데이터 ]</text>
+<g class="arrow"><path d="M50 190 V222" marker-end="url(#arrow2)"/><text x="72" y="213">IP가 출발지·목적지 IP 주소 등의 헤더를 붙입니다</text></g>
+<rect x="14" y="228" width="712" height="72" rx="12"/><text class="label" x="34" y="256">3계층 · IP 패킷</text><text x="34" y="282">[ IP 헤더 | TCP 헤더 | 데이터 ]</text>
+<g class="arrow"><path d="M50 302 V334" marker-end="url(#arrow2)"/><text x="72" y="325">Ethernet이 MAC 주소 등의 헤더와 오류 검사용 FCS를 붙입니다</text></g>
+<rect x="14" y="340" width="712" height="72" rx="12"/><text class="label" x="34" y="368">2계층 · Ethernet 프레임</text><text x="34" y="394">[ Ethernet 헤더 | IP 헤더 | TCP 헤더 | 데이터 | FCS ]</text>
+</svg><figcaption>이 그림은 TCP·IP·Ethernet을 사용하는 예시이며, 실제 데이터는 여러 세그먼트로 나뉠 수 있습니다. TCP는 재전송과 순서 복원을 제공하지만, UDP는 같은 보장을 제공하지 않습니다.</figcaption></figure>
+<figure><h2>3. 물리 전송: 신호는 실제 매체를 통과합니다</h2><svg viewBox="0 0 740 308" role="img" aria-labelledby="title3 desc3"><title id="title3">물리 전송: 신호는 실제 매체를 통과합니다</title><desc id="desc3">실제 매체를 통과하는 대상은 신호입니다. 수신 장치는 복원한 비트를 데이터 링크 계층에 전달합니다.</desc><defs><marker id="arrow3" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="none" stroke="currentColor"/></marker></defs>
+<rect x="14" y="4" width="712" height="72" rx="12"/><text class="label" x="34" y="32">송신 장치의 물리 계층</text><text x="34" y="58">물리 계층은 프레임의 비트를 전송 신호로 인코딩합니다.</text>
+<g class="arrow"><path d="M50 78 V110" marker-end="url(#arrow3)"/><text x="72" y="101">송신 장치가 신호를 매체에 내보냅니다</text></g>
+<rect x="14" y="116" width="712" height="72" rx="12"/><text class="label" x="34" y="144">전송 매체 · 케이블 또는 무선 구간</text><text x="34" y="170">전기·빛·무선 신호가 매체를 통과합니다.</text>
+<g class="arrow"><path d="M50 190 V222" marker-end="url(#arrow3)"/><text x="72" y="213">매체를 통과한 신호가 수신 장치에 도달합니다</text></g>
+<rect x="14" y="228" width="712" height="72" rx="12"/><text class="label" x="34" y="256">수신 장치의 물리 계층</text><text x="34" y="282">물리 계층은 수신 신호에서 비트를 복원합니다.</text>
+</svg><figcaption>실제 매체를 통과하는 대상은 신호입니다. 수신 장치는 복원한 비트를 데이터 링크 계층에 전달합니다.</figcaption></figure>
+<figure><h2>4. 수신: 데이터는 1계층에서 7계층으로 올라갑니다</h2><svg viewBox="0 0 740 756" role="img" aria-labelledby="title4 desc4"><title id="title4">수신: 데이터는 1계층에서 7계층으로 올라갑니다</title><desc id="desc4">수신 장치는 계층 정보를 처리하며 데이터를 역캡슐화합니다. 이 그림은 오류 없이 최종 목적지에 도착한 TCP·IP·Ethernet 데이터의 처리를 보여 줍니다.</desc><defs><marker id="arrow4" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="none" stroke="currentColor"/></marker></defs>
+<rect x="14" y="4" width="712" height="72" rx="12"/><text class="label" x="34" y="32">1 · 물리 계층</text><text x="34" y="58">물리 계층은 신호에서 비트를 복원합니다.</text>
+<g class="arrow"><path d="M50 78 V110" marker-end="url(#arrow4)"/><text x="72" y="101">복원한 비트를 전달합니다</text></g>
+<rect x="14" y="116" width="712" height="72" rx="12"/><text class="label" x="34" y="144">2 · 데이터 링크 계층</text><text x="34" y="170">데이터 링크 계층은 프레임을 검사하고 IP 패킷을 꺼냅니다.</text>
+<g class="arrow"><path d="M50 190 V222" marker-end="url(#arrow4)"/><text x="72" y="213">프레임에서 꺼낸 IP 패킷을 전달합니다</text></g>
+<rect x="14" y="228" width="712" height="72" rx="12"/><text class="label" x="34" y="256">3 · 네트워크 계층</text><text x="34" y="282">네트워크 계층은 IP 헤더를 처리하고 TCP 세그먼트를 꺼냅니다.</text>
+<g class="arrow"><path d="M50 302 V334" marker-end="url(#arrow4)"/><text x="72" y="325">IP 패킷에서 꺼낸 TCP 세그먼트를 전달합니다</text></g>
+<rect x="14" y="340" width="712" height="72" rx="12"/><text class="label" x="34" y="368">4 · 전송 계층</text><text x="34" y="394">TCP는 순서 복원과 재조립을 거쳐 데이터를 해당 프로세스에 전달합니다.</text>
+<g class="arrow"><path d="M50 414 V446" marker-end="url(#arrow4)"/><text x="72" y="437">재조립한 데이터를 전달합니다</text></g>
+<rect x="14" y="452" width="712" height="72" rx="12"/><text class="label" x="34" y="480">5 · 세션 계층</text><text x="34" y="506">세션 계층은 대화 상태와 동기화를 처리합니다.</text>
+<g class="arrow"><path d="M50 526 V558" marker-end="url(#arrow4)"/><text x="72" y="549">세션 처리를 거친 데이터를 전달합니다</text></g>
+<rect x="14" y="564" width="712" height="72" rx="12"/><text class="label" x="34" y="592">6 · 표현 계층</text><text x="34" y="618">표현 계층은 필요한 복호화·압축 해제·형식 변환을 처리합니다.</text>
+<g class="arrow"><path d="M50 638 V670" marker-end="url(#arrow4)"/><text x="72" y="661">응용 프로그램이 해석할 데이터를 전달합니다</text></g>
+<rect x="14" y="676" width="712" height="72" rx="12"/><text class="label" x="34" y="704">7 · 응용 계층</text><text x="34" y="730">응용 계층은 수신한 요청이나 응답을 처리합니다.</text>
+</svg><figcaption>수신 장치는 계층 정보를 처리하며 데이터를 역캡슐화합니다. 이 그림은 오류 없이 최종 목적지에 도착한 TCP·IP·Ethernet 데이터의 처리를 보여 줍니다.</figcaption></figure>
+<figure><h2>5. 라우터: 프레임은 다음 링크에 맞게 바뀝니다</h2><svg viewBox="0 0 740 308" role="img" aria-labelledby="title5 desc5"><title id="title5">라우터: 프레임은 다음 링크에 맞게 바뀝니다</title><desc id="desc5">이 그림은 두 Ethernet 링크 사이에 라우터 하나가 있는 IPv4 통신을 보여 줍니다. 일반적인 IP 전달에서 라우터는 링크 계층 정보를 교체하며, NAT가 없으면 출발지·목적지 IP 주소를 유지합니다.</desc><defs><marker id="arrow5" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="none" stroke="currentColor"/></marker></defs>
+<rect x="14" y="4" width="712" height="72" rx="12"/><text class="label" x="34" y="32">송신 호스트 · 첫 번째 링크</text><text x="34" y="58">프레임의 목적지 MAC 주소는 다음 장치인 라우터의 주소입니다.</text>
+<g class="arrow"><path d="M50 78 V110" marker-end="url(#arrow5)"/><text x="72" y="101">첫 링크의 프레임이 라우터에 도착합니다</text></g>
+<rect x="14" y="116" width="712" height="72" rx="12"/><text class="label" x="34" y="144">라우터 · 네트워크 계층에서 전달 판단</text><text x="34" y="170">라우터는 IP 목적지로 경로를 선택하고 TTL을 줄입니다.</text>
+<g class="arrow"><path d="M50 190 V222" marker-end="url(#arrow5)"/><text x="72" y="213">라우터가 다음 링크용 프레임을 만들어 패킷을 전달합니다</text></g>
+<rect x="14" y="228" width="712" height="72" rx="12"/><text class="label" x="34" y="256">수신 호스트 · 마지막 링크</text><text x="34" y="282">새 프레임의 목적지 MAC 주소는 수신 호스트의 주소입니다.</text>
+</svg><figcaption>이 그림은 두 Ethernet 링크 사이에 라우터 하나가 있는 IPv4 통신을 보여 줍니다. 일반적인 IP 전달에서 라우터는 링크 계층 정보를 교체하며, NAT가 없으면 출발지·목적지 IP 주소를 유지합니다.</figcaption></figure>
+<section aria-labelledby="questions"><h2 id="questions">스스로 확인할 질문</h2><ol><li>TCP 헤더의 포트 번호와 IP 헤더의 목적지 주소는 각각 어떤 전달 대상을 구분하나요?</li><li>수신 장치가 프레임에서 응용 데이터를 얻기까지 어떤 순서로 계층 정보를 처리하나요?</li></ol></section>
+</main></body></html>

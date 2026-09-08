@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>에이전트란 무엇인가</title>
+<style>
+  body {
+    font-family: -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    max-width: 720px;
+    margin: 40px auto;
+    padding: 0 20px;
+    color: #1f2937;
+    line-height: 1.6;
+  }
+  h1 { font-size: 24px; }
+  h2 { font-size: 18px; margin-top: 48px; border-left: 4px solid #4f46e5; padding-left: 10px; }
+  .caption { color: #4b5563; font-size: 15px; margin-top: 8px; }
+  svg { display: block; margin: 16px 0; max-width: 100%; height: auto; }
+  .legend { font-size: 13px; color: #6b7280; margin-top: 4px; }
+  .legend span { display: inline-block; margin-right: 14px; }
+  .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 4px; vertical-align: middle; }
+  .check { background: #f3f4f6; padding: 16px 20px; border-radius: 8px; margin-top: 48px; }
+  .check li { margin-bottom: 10px; }
+</style>
+</head>
+<body>
+
+<h1>에이전트란 무엇인가</h1>
+<p class="caption">세 개의 그림으로 LLM 단독 호출과 에이전트의 차이를 봅니다.</p>
+
+<h2>1. 일반 LLM 호출의 흐름</h2>
+<svg viewBox="0 0 640 160" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow1" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#374151"/>
+    </marker>
+  </defs>
+  <rect x="20" y="60" width="150" height="50" rx="8" fill="#eef2ff" stroke="#4f46e5" stroke-width="2"/>
+  <text x="95" y="90" text-anchor="middle" dominant-baseline="middle" font-size="15">사용자 입력</text>
+
+  <rect x="245" y="60" width="150" height="50" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+  <text x="320" y="90" text-anchor="middle" dominant-baseline="middle" font-size="15">LLM</text>
+
+  <rect x="470" y="60" width="150" height="50" rx="8" fill="#e0f2fe" stroke="#0369a1" stroke-width="2"/>
+  <text x="545" y="90" text-anchor="middle" dominant-baseline="middle" font-size="15">텍스트 출력</text>
+
+  <line x1="170" y1="85" x2="243" y2="85" stroke="#374151" stroke-width="2" marker-end="url(#arrow1)"/>
+  <text x="206" y="72" text-anchor="middle" font-size="12" fill="#374151">질문 전달</text>
+
+  <line x1="395" y1="85" x2="468" y2="85" stroke="#374151" stroke-width="2" marker-end="url(#arrow1)"/>
+  <text x="431" y="72" text-anchor="middle" font-size="12" fill="#374151">응답 생성</text>
+</svg>
+<p class="caption">LLM은 입력을 한 번 받아 출력을 한 번 만들고 멈춥니다. 되돌아가는 화살표가 없습니다.</p>
+
+<h2>2. 에이전트의 반복 구조</h2>
+<svg viewBox="0 0 640 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#374151"/>
+    </marker>
+  </defs>
+
+  <rect x="125" y="15" width="150" height="50" rx="8" fill="#eef2ff" stroke="#4f46e5" stroke-width="2"/>
+  <text x="200" y="40" text-anchor="middle" dominant-baseline="middle" font-size="15">사용자 목표</text>
+
+  <rect x="125" y="115" width="150" height="50" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+  <text x="200" y="140" text-anchor="middle" dominant-baseline="middle" font-size="15">LLM</text>
+
+  <rect x="405" y="115" width="150" height="50" rx="8" fill="#e0f2fe" stroke="#0369a1" stroke-width="2"/>
+  <text x="480" y="140" text-anchor="middle" dominant-baseline="middle" font-size="15">최종 응답</text>
+
+  <rect x="125" y="215" width="150" height="50" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+  <text x="200" y="240" text-anchor="middle" dominant-baseline="middle" font-size="15">도구 선택</text>
+
+  <rect x="125" y="315" width="150" height="50" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+  <text x="200" y="340" text-anchor="middle" dominant-baseline="middle" font-size="15">도구 실행</text>
+
+  <rect x="125" y="415" width="150" height="50" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+  <text x="200" y="440" text-anchor="middle" dominant-baseline="middle" font-size="15">관찰 결과</text>
+
+  <line x1="200" y1="65" x2="200" y2="113" stroke="#374151" stroke-width="2" marker-end="url(#arrow2)"/>
+  <text x="285" y="92" text-anchor="middle" font-size="12" fill="#374151">목표 전달</text>
+
+  <line x1="200" y1="165" x2="200" y2="213" stroke="#374151" stroke-width="2" marker-end="url(#arrow2)"/>
+  <text x="330" y="192" text-anchor="middle" font-size="12" fill="#374151">추가 행동이 필요하면 도구 선택</text>
+
+  <line x1="275" y1="140" x2="403" y2="140" stroke="#374151" stroke-width="2" marker-end="url(#arrow2)"/>
+  <text x="339" y="128" text-anchor="middle" font-size="12" fill="#374151">목표 달성 시 답변 생성</text>
+
+  <line x1="200" y1="265" x2="200" y2="313" stroke="#374151" stroke-width="2" marker-end="url(#arrow2)"/>
+  <text x="330" y="292" text-anchor="middle" font-size="12" fill="#374151">선택된 도구 호출</text>
+
+  <line x1="200" y1="365" x2="200" y2="413" stroke="#374151" stroke-width="2" marker-end="url(#arrow2)"/>
+  <text x="330" y="392" text-anchor="middle" font-size="12" fill="#374151">실행 결과 반환</text>
+
+  <path d="M 123,430 C 40,430 40,140 123,140" fill="none" stroke="#374151" stroke-width="2" marker-end="url(#arrow2)"/>
+  <text x="40" y="285" text-anchor="middle" font-size="12" fill="#374151" transform="rotate(-90 40 285)">관찰 결과를 다시 LLM 입력으로 전달</text>
+</svg>
+<p class="caption">LLM은 관찰 결과를 받아 도구를 다시 선택하거나 최종 응답을 만듭니다. 왼쪽의 되돌아가는 화살표가 반복을 만듭니다.</p>
+
+<h2>3. 구체적 예시: 날씨를 묻는 에이전트</h2>
+<svg viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#374151"/>
+    </marker>
+  </defs>
+
+  <rect x="105" y="15" width="200" height="50" rx="8" fill="#eef2ff" stroke="#4f46e5" stroke-width="2"/>
+  <text x="205" y="40" text-anchor="middle" dominant-baseline="middle" font-size="14">"오늘 서울 날씨 알려줘"</text>
+
+  <rect x="130" y="115" width="150" height="50" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+  <text x="205" y="140" text-anchor="middle" dominant-baseline="middle" font-size="15">LLM</text>
+
+  <rect x="420" y="115" width="200" height="50" rx="8" fill="#e0f2fe" stroke="#0369a1" stroke-width="2"/>
+  <text x="520" y="140" text-anchor="middle" dominant-baseline="middle" font-size="14">"서울은 맑고 24도입니다"</text>
+
+  <rect x="105" y="215" width="200" height="50" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+  <text x="205" y="240" text-anchor="middle" dominant-baseline="middle" font-size="14">날씨 API 도구 호출</text>
+
+  <rect x="90" y="315" width="230" height="50" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+  <text x="205" y="340" text-anchor="middle" dominant-baseline="middle" font-size="14">"서울, 맑음, 24도" 응답</text>
+
+  <line x1="205" y1="65" x2="205" y2="113" stroke="#374151" stroke-width="2" marker-end="url(#arrow3)"/>
+  <text x="280" y="92" text-anchor="middle" font-size="12" fill="#374151">질문 전달</text>
+
+  <line x1="205" y1="165" x2="205" y2="213" stroke="#374151" stroke-width="2" marker-end="url(#arrow3)"/>
+  <text x="325" y="192" text-anchor="middle" font-size="12" fill="#374151">날씨 조회 도구 호출 결정</text>
+
+  <line x1="280" y1="140" x2="418" y2="140" stroke="#374151" stroke-width="2" marker-end="url(#arrow3)"/>
+  <text x="349" y="128" text-anchor="middle" font-size="12" fill="#374151">조회 결과로 답변 생성</text>
+
+  <line x1="205" y1="265" x2="205" y2="313" stroke="#374151" stroke-width="2" marker-end="url(#arrow3)"/>
+  <text x="330" y="292" text-anchor="middle" font-size="12" fill="#374151">실제 API 호출 실행</text>
+
+  <path d="M 88,335 C 20,335 20,140 128,140" fill="none" stroke="#374151" stroke-width="2" marker-end="url(#arrow3)"/>
+  <text x="20" y="240" text-anchor="middle" font-size="12" fill="#374151" transform="rotate(-90 20 240)">조회 결과를 LLM에 다시 전달</text>
+</svg>
+<p class="caption">그림 2의 추상적 구조가 실제 값으로 채워진 경우입니다. LLM은 도구가 반환한 실제 문자열을 받아 답변을 만듭니다.</p>
+
+<div class="legend">
+  <span><span class="swatch" style="background:#eef2ff;border:1px solid #4f46e5;"></span>사용자 관련</span>
+  <span><span class="swatch" style="background:#fef3c7;border:1px solid #b45309;"></span>LLM</span>
+  <span><span class="swatch" style="background:#dcfce7;border:1px solid #15803d;"></span>도구 / API</span>
+  <span><span class="swatch" style="background:#e0f2fe;border:1px solid #0369a1;"></span>결과 / 응답</span>
+</div>
+
+<div class="check">
+  <strong>스스로 확인할 질문</strong>
+  <ol>
+    <li>그림 2에서 "관찰 결과"가 "LLM"으로 돌아가는 화살표를 지운다면, 이 시스템이 여러 단계짜리 작업을 수행할 수 있는지 없는지 설명해 보세요.</li>
+    <li>그림 1과 그림 3의 차이를 상자 개수가 아니라 화살표의 구조로 설명해 보세요.</li>
+  </ol>
+</div>
+
+</body>
+</html>
